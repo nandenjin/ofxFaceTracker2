@@ -51,7 +51,7 @@ common:
 	# in the src folders in libs and the root of the addon. if your addon needs
 	# to include files in different places or a different set of files per platform
 	# they can be specified here
-	#ADDON_SOURCES = src/%
+	# ADDON_SOURCES =
 
 	# some addons need resources to be copied to the bin/data folder of the project
 	# specify here any files that need to be copied, you can use wildcards like * and ?
@@ -65,9 +65,6 @@ common:
 	# when parsing the file system looking for sources exclude this for all or
 	# a specific platform
 
-	ADDON_SOURCES_EXCLUDE = libs/dlib/include/*
-	ADDON_INCLUDES_EXCLUDE = libs/dlib/include/dlib
-	#ADDON_INCLUDES_EXCLUDE += libs/dlib/include/%
 	ADDON_INCLUDES = libs/dlib/include/
 	ADDON_INCLUDES += src
 
@@ -89,9 +86,8 @@ android/x86:
 	ADDON_LIBS = libs/dlib/lib/android/x86/libdlib.a
 
 vs:
-	ADDON_SOURCES_EXCLUDE = libs/dlib/include/%
-	ADDON_INCLUDES_EXCLUDE = libs/dlib/include/dlib
-	ADDON_LIBS = libs/dlib/lib/win/Release/dlib.lib
-	ADDON_CFLAGS = "/D _USE_MATH_DEFINES"
-
-
+	ADDON_SOURCES = libs/dlib/include/dlib/all/source.cpp
+	ADDON_SOURCES += src/ofxFaceTracker2.cpp
+	ADDON_SOURCES += src/ofxFaceTracker2Instance.cpp
+	ADDON_SOURCES += src/ofxFaceTracker2Landmarks.cpp
+	ADDON_CFLAGS = "/D _USE_MATH_DEFINES /bigobj"
